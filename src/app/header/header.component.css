@@ -19,8 +19,13 @@ svg {
     font-size: smaller;
   }
 }
-@media screen and (max-device-width: 350px){
+@media screen and (max-device-width: 380px){
   span {
     font-size: 12px;
+  }
+}
+@media screen and (max-device-width: 320px){
+  span {
+    font-size: 10px;
   }
 }
