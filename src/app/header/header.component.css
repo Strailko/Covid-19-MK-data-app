@@ -1,0 +1,26 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+.active {
+  color: red;
+  transition: all 1s ease;
+}
+
+.not-active {
+  color: white;
+  transition: all 1s ease;
+}
+
+svg {
+  color: white;
+}
+@media screen and (max-device-width: 440px){
+  span {
+    font-size: smaller;
+  }
+}
+@media screen and (max-device-width: 350px){
+  span {
+    font-size: 12px;
+  }
+}

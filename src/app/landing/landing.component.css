@@ -1,0 +1,137 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    flex-direction: column;
+    min-height: 80vh;
+    padding: auto;
+}
+.container .content .row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.container .content div p{
+    padding: 3em;
+}
+
+hr {
+    min-width: 80%;
+    opacity: 0.2;
+}
+.container .content {
+    padding: 3em 0;
+}
+
+.content {
+    width: 95%;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.counter {
+    background-color: #f5f5f5;
+    padding: 20px 0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.counter .fa {
+    padding-top: 0.5em;
+    font-size: 58px;
+}
+
+.count-title {
+    font-size: 40px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.count-text {
+    color: rgba(0,0,0,0.45);
+    font-family: Roboto, "Helvetica Neue", sans-serif !important; 
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.fa-2x {
+    margin: 0 auto;
+    float: none;
+    display: table;
+    color: #3F51B5;
+}
+
+.expandable {
+    width: 80%;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 1em;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    user-select: none;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(245, 245, 245, 0.4);
+}
+
+.center {
+    text-align: center;
+    align-self: center;
+}
+
+.expandable:hover {
+    background: whitesmoke;
+}
+
+.pads {
+    padding: 1em 1em;
+}
+
+.pads-top {
+    padding: 1em 1em 0 1em;
+}
+
+.chart {
+    display: flex;
+    height:40vh;
+    width: 90%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chart-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.date {
+    color: rgba(0,0,0,0.75);
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 600;
+}
+
+@media screen and (max-device-width: 720px){
+    h1 {
+        font: 400 14px/22px Roboto, "Helvetica Neue", sans-serif;
+    }
+}

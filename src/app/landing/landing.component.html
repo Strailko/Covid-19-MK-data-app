@@ -1,0 +1,240 @@
+<div class="container">
+  
+  <div *ngIf="!selectedValue || !gradovi || !mk || !svet"><mat-spinner></mat-spinner></div>
+  
+  <div class="content" *ngIf="selectedValue && gradovi">
+    <div class="expandable" (click)="expand(1)"><h1>Статистика по градови <mat-icon *ngIf="IsExpanded1">expand_less</mat-icon><mat-icon *ngIf="!IsExpanded1">expand_more</mat-icon></h1></div>
+    <div *ngIf="IsExpanded1">
+    <mat-form-field class="pads-top" appearance="fill" *ngIf="selectedValue && gradovi">
+    <mat-label>Избери град</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="grad" (selectionChange)="reinitiateChart(1)">
+      <mat-option *ngFor="let grad of gradovi" [value]="grad">
+        {{grad.grad}}
+      </mat-option>
+    </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="pads-top" appearance="fill" *ngIf="chartType && chartTypes">
+      <mat-label>Избери тип на график</mat-label>
+      <mat-select [(ngModel)]="chartType" name="type" (selectionChange)="reinitiateChart(1)">
+        <mat-option *ngFor="let type of chartTypes" [value]="type[0]">
+          {{type[1]}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      
+    
+    <div class="row text-center pads" *ngIf="selectedValue">
+        <div class="col pads">
+          <div class="counter">
+            <i class="fa fa-code fa-2x" *ngIf="selectedValue.novozaboleni">{{selectedValue.novozaboleni | number}}</i>
+            <h2 class="timer count-title count-number"></h2>
+            <p class="count-text " *ngIf="selectedValue.grad">Новозаразени <br>во {{selectedValue.grad}}</p>
+          </div>
+        </div>
+        <div class="col pads">
+          <div class="counter">
+            <i class="fa fa-coffee fa-2x" *ngIf="selectedValue.novopochinati">{{selectedValue.novopochinati | number}}</i>
+            <h2 class="timer count-title count-number"></h2>
+            <p class="count-text " *ngIf="selectedValue.grad">Новопочинати <br>во {{selectedValue.grad}}</p>
+          </div>
+        </div>
+        <div class="col pads">
+          <div class="counter">
+            <i class="fa fa-lightbulb-o fa-2x" *ngIf="selectedValue.novoozdraveni">{{selectedValue.novoozdraveni | number}}</i>
+            <h2 class="timer count-title count-number"></h2>
+            <p class="count-text " *ngIf="selectedValue.grad">Новооздравени <br>во {{selectedValue.grad}}</p>
+          </div>
+        </div>
+        <div class="col pads">
+          <div class="counter">
+            <i class="fa fa-bug fa-2x" *ngIf="selectedValue.aktivni">{{selectedValue.aktivni | number}}</i>
+            <h2 class="timer count-title count-number"></h2>
+            <p class="count-text " *ngIf="selectedValue.grad">Активни случаи <br>во {{selectedValue.grad}}</p>
+          </div>
+        </div>
+        <div class="col pads">
+          <div class="counter">
+            <i class="fa fa-bug fa-2x" *ngIf="selectedValue.vkupnozaboleni">{{selectedValue.vkupnozaboleni | number}}</i>
+            <h2 class="timer count-title count-number"></h2>
+            <p class="count-text " *ngIf="selectedValue.grad">Вкупно заболени <br>во {{selectedValue.grad}}</p>
+          </div>
+        </div>
+        <div class="col pads">
+          <div class="counter">
+            <i class="fa fa-bug fa-2x" *ngIf="selectedValue.vkupnopochinati">{{selectedValue.vkupnopochinati | number}}</i>
+            <h2 class="timer count-title count-number"></h2>
+            <p class="count-text " *ngIf="selectedValue.grad">Вкупно починати <br>во {{selectedValue.grad}}</p>
+          </div>
+        </div>
+        <div class="col pads">
+          <div class="counter">
+            <i class="fa fa-bug fa-2x" *ngIf="selectedValue.vkupnoozdraveni">{{selectedValue.vkupnoozdraveni | number}}</i>
+            <h2 class="timer count-title count-number"></h2>
+            <p class="count-text " *ngIf="selectedValue.grad">Вкупно оздравени <br>во {{selectedValue.grad}}</p>
+          </div>
+        </div>
+      </div>
+      
+    <div class="chart-wrap">
+      <div class="chart" id="chart">
+        <mat-progress-bar class="center" mode="indeterminate" *ngIf="!chartInitialized"></mat-progress-bar>
+        <canvas id="canvas" #canvas></canvas>
+      </div>
+    </div>
+    <div class="date"><span class="date">Датум: {{date}}.2020</span></div>
+    </div>
+  </div>
+  
+
+  <hr *ngIf="selectedValue && gradovi && mk">
+
+  <div class="content" *ngIf="mk">
+    <div class="expandable" (click)="expand(2)"><h1>Статистика на државно ниво <mat-icon *ngIf="IsExpanded2">expand_less</mat-icon><mat-icon *ngIf="!IsExpanded2">expand_more</mat-icon></h1></div>
+
+    <div *ngIf="IsExpanded2">
+      <mat-form-field class="pads-top" appearance="fill" *ngIf="chartType2 && chartTypes">
+        <mat-label>Избери тип на график</mat-label>
+        <mat-select [(ngModel)]="chartType2" name="type" (selectionChange)="reinitiateChart(2)">
+          <mat-option *ngFor="let type of chartTypes" [value]="type[0]">
+            {{type[1]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <div class="row text-center pads" *ngIf="mk">
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-code fa-2x" *ngIf="mk.novozaboleni">{{mk.novozaboleni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Новозаразени <br>во Македонија</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-coffee fa-2x" *ngIf="mk.novopochinati">{{mk.novopochinati | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Новопочинати <br>во Македонија</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-lightbulb-o fa-2x" *ngIf="mk.novoozdraveni">{{mk.novoozdraveni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Новооздравени <br>во Македонија</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-bug fa-2x" *ngIf="mk.aktivni">{{mk.aktivni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Активни случаи <br>во Македонија</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-bug fa-2x" *ngIf="mk.vkupnozaboleni">{{mk.vkupnozaboleni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Вкупно заболени <br>во Македонија</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-bug fa-2x" *ngIf="mk.vkupnopochinati">{{mk.vkupnopochinati | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Вкупно починати <br>во Македонија</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-bug fa-2x" *ngIf="mk.vkupnoozdraveni">{{mk.vkupnoozdraveni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Вкупно оздравени <br>во Македонија</p>
+        </div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart">
+        <mat-progress-bar class="center" mode="indeterminate" *ngIf="!chartInitialized2"></mat-progress-bar>
+        <canvas id="canvas2" #canvas2></canvas>
+      </div>
+    </div>
+  <span class="date" *ngIf="mk">Датум: {{mk.date}}</span>
+  </div>
+  </div>
+
+  <hr *ngIf="mk && svet">
+
+  <div class="content" *ngIf="svet">
+    <div class="expandable" (click)="expand(3)"><h1>Статистика на светско ниво <mat-icon *ngIf="IsExpanded3">expand_less</mat-icon><mat-icon *ngIf="!IsExpanded3">expand_more</mat-icon></h1></div>
+
+    <div *ngIf="IsExpanded3">
+      <mat-form-field class="pads-top" appearance="fill" *ngIf="chartType3 && chartTypes">
+        <mat-label>Избери тип на график</mat-label>
+        <mat-select [(ngModel)]="chartType3" name="type" (selectionChange)="reinitiateChart(3)">
+          <mat-option *ngFor="let type of chartTypes" [value]="type[0]">
+            {{type[1]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <div class="row text-center pads" *ngIf="svet">
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-code fa-2x" *ngIf="svet.novozaboleni">{{svet.novozaboleni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Новозаразени <br>во светот</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-coffee fa-2x" *ngIf="svet.novopochinati">{{svet.novopochinati | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Новопочинати <br>во светот</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-lightbulb-o fa-2x" *ngIf="svet.novoozdraveni">{{svet.novoozdraveni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Новооздравени <br>во светот</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-bug fa-2x" *ngIf="svet.aktivni">{{svet.aktivni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Активни случаи <br>во светот</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-bug fa-2x" *ngIf="svet.vkupnozaboleni">{{svet.vkupnozaboleni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Вкупно заболени <br>во светот</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-bug fa-2x" *ngIf="svet.vkupnopochinati">{{svet.vkupnopochinati | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Вкупно починати <br>во светот</p>
+        </div>
+      </div>
+      <div class="col pads">
+        <div class="counter">
+          <i class="fa fa-bug fa-2x" *ngIf="svet.vkupnoozdraveni">{{svet.vkupnoozdraveni | number}}</i>
+          <h2 class="timer count-title count-number"></h2>
+          <p class="count-text ">Вкупно оздравени <br>во светот</p>
+        </div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart">
+        <mat-progress-bar class="center" mode="indeterminate" *ngIf="!chartInitialized3"></mat-progress-bar>
+        <canvas id="canvas3" #canvas3></canvas>
+      </div>
+    </div>
+  <span class="date" *ngIf="svet">Датум: {{mk.date}}</span>
+  </div>
+  </div>
+
+</div>

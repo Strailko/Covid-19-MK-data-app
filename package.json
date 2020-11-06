@@ -12,24 +12,29 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.1.2",
+    "@angular/cdk": "^10.2.5",
     "@angular/common": "~10.1.2",
     "@angular/compiler": "~10.1.2",
     "@angular/core": "~10.1.2",
     "@angular/forms": "~10.1.2",
+    "@angular/material": "^10.2.5",
     "@angular/platform-browser": "~10.1.2",
     "@angular/platform-browser-dynamic": "~10.1.2",
     "@angular/router": "~10.1.2",
+    "angular-material": "^1.2.1",
+    "chart.js": "^2.9.4",
+    "pdfjs-dist": "^2.0.489",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.2",
+    "@angular-devkit/build-angular": "^0.1002.0",
     "@angular/cli": "~10.1.2",
     "@angular/compiler-cli": "~10.1.2",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -42,5 +47,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"
+  },
+  "browser": {
+    "zlib": false
   }
 }
