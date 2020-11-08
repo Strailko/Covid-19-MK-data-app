@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ковид-19 - податоци</string>
+    <string name="title_activity_main">Ковид-19 - податоци</string>
+    <string name="package_name">xyz.jankuloski.korona</string>
+    <string name="custom_url_scheme">xyz.jankuloski.korona</string>
+</resources>
