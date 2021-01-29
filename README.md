@@ -1,5 +1,5 @@
 # Korona
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
+https://dev.jankuloski.xyz/
 
 # Covid-19-MK-data-app
